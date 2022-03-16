@@ -1,20 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { getClassList } from '../../services/api-calls'
 
 const ClassList = (props) => {
-  const [results, setResults] = useState(['Paladin', 'Bard', 'Rogue'])
+  const [classes, setClasses] = useState([])
+
+  useEffect(()=> {
+    getClassList()
+    .then(classData => setClasses(classData.results))
+  })
+
   return (
     <>
       <div>
         <h3>Class List</h3>
         <div className='icon-container'>
-          {results.map((classTitle) => (
-            <div id="classDiv" key={classTitle}>
+          {classes.map((classTitle) => (
+            <div id="classDiv" key={classTitle.index}>
               <img 
                 style={{ width: "100px", height: "100px" }}
-                src={`/images/${classTitle}.svg`} 
+                src={`/images/${classTitle.name}.svg`} 
                 alt="class-logo"
               />
-              {classTitle}
+              {classTitle.name}
             </div>
           ))}
         </div>
