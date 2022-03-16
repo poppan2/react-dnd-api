@@ -1,8 +1,9 @@
+import './App.css';
 import { useState } from 'react';
+import { Route, Routes } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar';
 import ClassList from './pages/ClassList/ClassList';
-import './App.css';
-import { Route, Routes } from 'react-router-dom'
+import ClassDetails from './pages/ClassDetails/ClassDetails';
 
 function App() {
   const [navItems, setNavItems] = useState([
@@ -15,6 +16,7 @@ function App() {
       <NavBar navItems={navItems} />
       <Routes>
         <Route path='/class-list' element={<ClassList />} />
+        <Route path='/class' element={<ClassDetails />} />
       </Routes>
     </>
   );
